@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div id="app" class="flex flex-col justify-center items-center h-screen">
+      <div class="bg-blue-500 pt-5 px-10 rounded-2xl h-96 flex flex-col">
+        <div class="">
+          <input
+            type="text"
+            id="searchBar"
+            placeholder="Search by city"
+            class="focus:outline-none placeholder-gray-100  border-b-2 opacity-75 border-b-white"
+          />
+          <button id="searchIcon" onClick="getWeather()">
+            <i class="fa-solid fa-magnifying-glass text-white"></i>
+          </button>
+        </div>
+
+        <div id="info" class="mt-3 text-center italic">
+          <p id="date" class="text-white"></p>
+          <h3 id="city" class="text-white text-2xl"></h3>
+        </div>
+
+        <div id="tempimage" class="flex justify-center text-white"></div>
+
+        <div id="description" class="flex justify-center text-white"></div>
+
+        <div id="temp" class="flex justify-center text-white"></div>
+        
+        
+        <div id="extraInfo" class="mt-10 flex justify-between text-white">
+          <div>
+            <h4>Highs</h4>
+            <p id="tempMax"></p>
+          </div>
+          <div>
+            <h4>Lows</h4>
+            <p id="tempMin"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="weather.js"></script>
+  </body>
+</html>
