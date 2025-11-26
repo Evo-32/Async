@@ -22,7 +22,7 @@ async function getWeather(){
 
         const cityName = document.getElementById('searchBar').value
 
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=78f1b7b1b9d810b66d0ff4008e4bbf06&units=metric`,{
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${key}&units=metric`,{
             headers:{
                 Accept :'application/json'
             }
