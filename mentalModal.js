@@ -32,25 +32,31 @@
 // }
 // GetData().then(msg => console.log(msg))
 
-async function Fetch(url) {
-  let trials = 0;
-  let nTimes = 3;
-  while (trials < nTimes) {
-    try {
-      const data = await fetch(url);
-      if (!data.ok) throw new Error('Request failed!')
-        const res = await data.json();
-      console.log('Data fetched:',res)
-      break;
-    } catch {
-      trials++
-      if(trials < nTimes){
-        console.log('Retrying...')
-      }else{
-        console.log('Fetching failed after', trials,'Trials')
-      }
-    }
-  }
-}
+// async function Fetch(url) {
+//   let trials = 0;
+//   let nTimes = 3;
+//   while (trials < nTimes) {
+//     try {
+//       const data = await fetch(url);
+//       if (!data.ok) throw new Error('Request failed!')
+//         const res = await data.json();
+//       console.log('Data fetched:',res)
+//       break;
+//     } catch {
+//       trials++
+//       if(trials < nTimes){
+//         console.log('Retrying...')
+//       }else{
+//         console.log('Fetching failed after', trials,'Trials')
+//       }
+//     }
+//   }
+// }
 
-Fetch('https://jsonplaceholder.typicode.com/INVALID_ENDPOINT')
+// Fetch('https://jsonplaceholder.typicode.com/INVALID_ENDPOINT')
+
+
+
+
+
+fetchToDo()

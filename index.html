@@ -1,16 +1,37 @@
-
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Page Title</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-</head>
-<body>
-    <h1>Asynchronous learning</h1>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  </head>
+  <body>
+    <!-- <h1>Asynchronous learning</h1> -->
 
-    <script src='script.js'></script>
-</body>
+    <script>
+      function fetchToDo() {
+        const xhr = new XMLHttpRequest();
+
+        xhr.open("Get", "https://jsonplaceholder.typicode.com/todos/1");
+        xhr.onload = () => {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            const data = JSON.parse(xhr.responseText);
+            console.log(data);
+          } else {
+            console.log("Request failed  with status:", xhr.status);
+          }
+        };
+
+        xhr.onerror = () => {
+          console.log("Network error");
+        };
+
+        xhr.send();
+      }
+
+      fetchToDo();
+    </script>
+  </body>
 </html>
