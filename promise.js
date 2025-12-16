@@ -1,110 +1,109 @@
-// //Topic 1 Promises
-// function successfulPromise(value){
-//     return new Promise(resolve => {
-//       setTimeout(() => {
-//         resolve(value)
-//     },100)
-//     })
-//   }
-// successfulPromise(200).then((msg) => {
-//     console.log(msg)
-// })
+//Topic 1 Promises
+function successfulPromise(value){
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(value)
+    },100)
+    })
+  }
+successfulPromise(200).then((msg) => {
+    console.log(msg)
+})
 
-// function failingPromise(reason){
-//   return new Promise((_,reject) => {
-//     setTimeout(() =>{
-//       reject(reason)
-//     })
-//   })
-// }
-// failingPromise('Data not found').catch((error) => console.log(error))
+function failingPromise(reason){
+  return new Promise((_,reject) => {
+    setTimeout(() =>{
+      reject(reason)
+    })
+  })
+}
+failingPromise('Data not found').catch((error) => console.log(error))
 
-// function coinFlip(){
-//     let num = Math.random()
-//     return new Promise((resolve,reject)=>{
-//         if(num  < 0.5){
-//             resolve('Heads')
-//         }else{
-//             reject('Tails')
-//         }
-//     })
-// }
-// coinFlip().then(msg => console.log(msg)).catch(error => console.log(error))
+function coinFlip(){
+    let num = Math.random()
+    return new Promise((resolve,reject)=>{
+        if(num  < 0.5){
+            resolve('Heads')
+        }else{
+            reject('Tails')
+        }
+    })
+}
+coinFlip().then(msg => console.log(msg)).catch(error => console.log(error))
 
-//Topic 2 http status
+Topic 2 http status
 
-// async function fetchTodoTitle(){
-//     let data = await fetch('https://jsonplaceholder.typicode.com/todos/5')
+async function fetchTodoTitle(){
+    let data = await fetch('https://jsonplaceholder.typicode.com/todos/5')
 
-//     let userInfo = await data.json()
+    let userInfo = await data.json()
 
-//     return  userInfo.title
-// }
-// fetchTodoTitle().then((msg) => console.log(msg)).catch((error) =>  console.log(error))
+    return  userInfo.title
+}
+fetchTodoTitle().then((msg) => console.log(msg)).catch((error) =>  console.log(error))
 
-// async function checkUserExists(id){
-//     let infoo = await fetch ('https://jsonplaceholder.typicode.com/users/1')
+async function checkUserExists(id){
+    let infoo = await fetch ('https://jsonplaceholder.typicode.com/users/1')
 
-//     if(!infoo.ok){
-//         return false
-//     }
-//     else{
-//         return true
-//     }
-// }
-// checkUserExists().then((msg) => console.log(msg)).catch((error) =>  console.log(error))
+    if(!infoo.ok){
+        return false
+    }
+    else{
+        return true
+    }
+}
+checkUserExists().then((msg) => console.log(msg)).catch((error) =>  console.log(error))
 
-// async function createPost(title,body){
-//     const response = await  fetch('https://jsonplaceholder.typicode.com/posts',{
-//         method: 'POST',
-//         headers :{
-//             'Content-type': 'application/json; charset=UTF-8'
-//         }, //describe the type of data i am sending
-//         body: JSON.stringify({
-//             title : title,
-//             body : body,
-//             userId : 1
-//         })
-//     })
+async function createPost(title,body){
+    const response = await  fetch('https://jsonplaceholder.typicode.com/posts',{
+        method: 'POST',
+        headers :{
+            'Content-type': 'application/json; charset=UTF-8'
+        }, //describe the type of data i am sending
+        body: JSON.stringify({
+            title : title,
+            body : body,
+            userId : 1
+        })
+    })
 
-//     const post = await response.json()
+    const post = await response.json()
 
-//     return post
-// }
-// createPost('Bubble', 'I invite you to my first story.').then(post => console.log(post.body))
+    return post
+}
+createPost('Bubble', 'I invite you to my first story.').then(post => console.log(post.body))
 
-//Topic 3
+Topic 3
 
-// async function getFastestTodo(id1,id2){
-//     const url1 = fetch(`https://jsonplaceholder.typicode.com/todos/${id1}`)
-//     const url2 = fetch(`https://jsonplaceholder.typicode.com/todos/${id2}`)
+async function getFastestTodo(id1,id2){
+    const url1 = fetch(`https://jsonplaceholder.typicode.com/todos/${id1}`)
+    const url2 = fetch(`https://jsonplaceholder.typicode.com/todos/${id2}`)
 
-//     const fastResponse = await Promise.race([url1,url2])
+    const fastResponse = await Promise.race([url1,url2])
 
-//     const fastData = await fastResponse.json()
+    const fastData = await fastResponse.json()
 
-//     return fastData
-// }
-// getFastestTodo(2,5).then((msg) => console.log(msg) )
+    return fastData
+}
+getFastestTodo(2,5).then((msg) => console.log(msg) )
 
-// async function getUserData(userId) {
-//   const details = fetch(`https://jsonplaceholder.typicode.com/users/${userId}`);
-//   const albums = fetch(
-//     `https://jsonplaceholder.typicode.com/users/${userId}/albums`
-//   );
-//   const todos = fetch(
-//     `https://jsonplaceholder.typicode.com/users/${userId}/todos`
-//   );
+async function getUserData(userId) {
+  const details = fetch(`https://jsonplaceholder.typicode.com/users/${userId}`);
+  const albums = fetch(
+    `https://jsonplaceholder.typicode.com/users/${userId}/albums`
+  );
+  const todos = fetch(
+    `https://jsonplaceholder.typicode.com/users/${userId}/todos`
+  );
 
-//   const result = await Promise.all([details, albums, todos]);
+  const result = await Promise.all([details, albums, todos]);
 
-//   const [detail, album, todo] = await Promise.allSettled(
-//     await Promise.all(result.map((res) => res.json()))
-//   );
-//   return [detail, album, todo];
-// }
-// getUserData(4).then((msg) => console.log(msg));
-
+  const [detail, album, todo] = await Promise.allSettled(
+    await Promise.all(result.map((res) => res.json()))
+  );
+  return [detail, album, todo];
+}
+getUserData(4).then((msg) => console.log(msg));
 
 async function getUserDataSafe(userId) {
 
@@ -124,3 +123,32 @@ async function getUserDataSafe(userId) {
   )
 }
 getUserDataSafe(4).then(data => console.log(data));
+
+
+
+function throwInChain() {
+  return new Promise((resolve) => resolve(1))
+    .then((msg) => console.log(msg * 2))
+    .then((msg) => {
+      throw new Error("Chain Broken");
+    })
+    .catch((error) => console.log(error));
+}
+throwInChain();
+
+
+async function processDataSafely(url){
+  try{
+    let fetching = await fetch(url)
+    if(fetching.ok){
+      return await fetching.json()
+    }else{
+      throw new Error('error fetching')
+    }
+  }
+  catch(error){
+    return {error: true , details: error.message}
+  }
+}
+
+processDataSafely('https://invalid-url-that-will-fail.com').then(console.log)
