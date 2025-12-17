@@ -58,5 +58,45 @@
 
 
 
+function fetchToDo() {
+  const xhr = new XMLHttpRequest();
 
-fetchToDo()
+  // 1. Initialize the request (POST because we are sending data)
+  xhr.open('POST', 'https://jsonplaceholder.typicode.com/todos/1');
+
+  // 2. Set custom headers
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('User-Agent', 'MyCustomAgent/1.0');
+
+  // 3. Handle the response
+  xhr.onload = () => {
+    if (xhr.status >= 200 && xhr.status < 300) {
+      try {
+        const data = JSON.parse(xhr.responseText);
+        console.log('Parsed response:', data);
+      } catch (err) {
+        console.error('Failed to parse JSON:', err);
+      }
+    } else {
+      console.error('Request failed with status:', xhr.status);
+    }
+  };
+
+  // 4. Handle network errors
+  xhr.onerror = () => {
+    console.error('Network error occurred');
+  };
+
+  // 5. Create JSON payload
+  const payload = {
+    title: 'Learn XHR',
+    completed: false,
+    userId: 1
+  };
+
+  // 6. Send the request with JSON payload
+  xhr.send(JSON.stringify(payload));
+}
+
+// Call the function
+fetchToDo();
